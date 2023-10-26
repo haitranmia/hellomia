@@ -1,0 +1,13 @@
+# A metadata file. Do not modify anything but stuff to do with listing to the Marketplace,
+# such as adding an icon or the name/description
+name: 'Hello World (Python Version)'
+description: 'Greet the Earth. This is an example of an action using Python.'
+runs:
+  using: "composite"
+  steps:
+    - run: if [[ -f ${{github.action_path}}/requirements.txt ]]; then pip install -r ${{github.action_path}}/requirements.txt >> /dev/null; fi
+      shell: bash
+    - run: if [[ -f ${{github.action_path}}/src/requirements.txt ]]; then pip install -r ${{github.action_path}}/src/requirements.txt >> /dev/null; fi
+      shell: bash 
+    - run: python ${{github.action_path}}/src/action.py
+      shell: bash
